@@ -1,0 +1,80 @@
+{
+    "name": "itinerisltd/wc-asperato",
+    "type": "wordpress-plugin",
+    "description": "Asperato integration for WooCommerce.",
+    "keywords": [
+        "asperato",
+        "gateway",
+        "payment",
+        "wc",
+        "woocommerce",
+        "wordpress",
+        "wp"
+    ],
+    "homepage": "https://itinerisltd.github.io/wc-asperato/",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Itineris Limited",
+            "email": "hello@itineris.co.uk",
+            "homepage": "https://itineris.co.uk/",
+            "role": "Company"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "10up/wp_mock": "^0.3.0",
+        "automattic/vipwpcs": "^0.3.0",
+        "codeception/base": "^2.4",
+        "mockery/mockery": "^1.1",
+        "roave/security-advisories": "dev-master",
+        "wp-coding-standards/wpcs": "^1.0"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Itineris\\WCAsperato\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Itineris\\WCAsperato\\": "tests/unit/"
+        }
+    },
+    "prefer-stable": true,
+    "scripts": {
+        "check-style": "phpcs --colors -p",
+        "pretag": [
+            "composer update",
+            "@test",
+            "@check-style",
+            "composer normalize",
+            "github_changelog_generator --no-verbose"
+        ],
+        "test": "codecept run",
+        "test:coverage": "codecept run --coverage --coverage-html --coverage-xml"
+    },
+    "support": {
+        "email": "hello@itineris.co.uk",
+        "issues": "https://github.com/ItinerisLtd/wc-asperato/issues",
+        "source": "https://github.com/ItinerisLtd/wc-asperato"
+    }
+}
