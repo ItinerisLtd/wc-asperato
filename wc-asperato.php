@@ -37,4 +37,4 @@ function run(): void
     $plugin->run();
 }
 
-run();
+add_action('plugins_loaded', __NAMESPACE__ . '\run');
