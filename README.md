@@ -22,6 +22,9 @@
 
 ## Installation
 
+**For Itineris team only:** [Asperato](https://asperato.com/) is not up to Itineris standards. 
+Using this plugin requires **prior approval** from the PHP team. 
+
 ```bash
 $ composer require itinerisltd/wc-asperato
 ```
