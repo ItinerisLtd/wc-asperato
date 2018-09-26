@@ -10,6 +10,20 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Minimum Requirements](#minimum-requirements)
+- [Installation](#installation)
+- [Test Credentials](#test-credentials)
+- [FAQ](#faq)
+  - [Will you add support for older PHP versions?](#will-you-add-support-for-older-php-versions)
+  - [It looks awesome. Where can I find some more goodies like this?](#it-looks-awesome-where-can-i-find-some-more-goodies-like-this)
+  - [This plugin isn't on wp.org. Where can I give a ⭐️⭐️⭐️⭐️⭐️ review?](#this-plugin-isnt-on-wporg-where-can-i-give-a-%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F-review)
+- [Testing](#testing)
+- [Feedback](#feedback)
+- [Change Log](#change-log)
+- [Security](#security)
+- [Credits](#credits)
+- [License](#license)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 [Asperato](https://asperato.com/) integration for WooCommerce.
@@ -40,6 +54,10 @@ $ composer require itinerisltd/wc-asperato
 
 **For Itineris team only:** [Asperato](https://asperato.com/) is not up to Itineris standards. 
 Using this plugin requires **prior approval** from the PHP team.
+
+## Test Credentials
+
+pmRef: 903
 
 ## FAQ
 
