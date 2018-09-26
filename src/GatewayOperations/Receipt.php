@@ -90,15 +90,13 @@ class Receipt
      */
     protected function redirectUrl(WC_Order $order): string
     {
+        $redirectUrl = add_query_arg([
+            'wc-api' => 'wp_asperato',
+            'orderId' => $order->get_id(),
+        ], home_url('/'));
+
         // TODO: Figure out why WooCommerce docs not using HTTPS.
-        return str_replace(
-            'https:',
-            'http:',
-            add_query_arg([
-                'wc-api' => 'wp_asperato',
-                'orderId' => $order->get_id(),
-            ], home_url('/'))
-        );
+        return str_replace('https:', 'http:', $redirectUrl);
     }
 
     /**
