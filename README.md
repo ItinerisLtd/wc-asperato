@@ -6,6 +6,8 @@
 [![GitHub License](https://img.shields.io/github/license/itinerisltd/wc-asperato.svg)](https://github.com/ItinerisLtd/wc-asperato/blob/master/LICENSE)
 [![Hire Itineris](https://img.shields.io/badge/Hire-Itineris-ff69b4.svg)](https://www.itineris.co.uk/contact/)
 
+**work in progress**
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -42,6 +44,8 @@
 
 ## Installation
 
+**work in progress**
+
 ```json
 # composer.json
 {
@@ -55,7 +59,7 @@
 ```
 
 ```bash
-$ composer require itinerisltd/wc-asperato
+$ composer require itinerisltd/wc-asperato:dev-master
 ```
 
 ## To Webkul
@@ -88,10 +92,10 @@ You need to:
 
 ## To Itineris Team
 
-[Asperato](https://asperato.com/) is not up to Itineris standards. 
+[Asperato](https://asperato.com/) is not up to Itineris standards.
 Using this plugin requires **prior approval** from the PHP team.
 
-Before we retrieve payment reference from Salesforce:
+Before task 1 is completed:
 ```php
 add_filter('wc_asperato_pid', function() {
     return '';
@@ -111,10 +115,10 @@ add_filter('wc_asperato_pid', function() {
 
 ## Test Credentials
 
-pmRef: 903
-Credit card number: 4242 4242 4242 4242
-CVV: 123
-Expiry Date: Any date in the next year
+- pmRef: 903
+- Credit card number: 4242 4242 4242 4242
+- CVV: 123
+- Expiry Date: Any date in the next year
 
 ## FAQ
 
