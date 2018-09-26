@@ -88,13 +88,6 @@ class WCAsperatoGateway extends WC_Payment_Gateway
                 ),
                 'default' => '903',
             ],
-            'camid' => [
-                'title' => __('camid', 'woocommerce'),
-                'type' => 'text',
-                'desc_tip' => true,
-                'description' => __('Nobody knows what it is. Asperato docs not found!!', 'woocommerce'),
-                'default' => '7010Y000000DTD1',
-            ],
         ];
     }
 

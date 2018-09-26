@@ -79,10 +79,7 @@ class Receipt
     protected function iframeUrl(WC_Order $order): string
     {
         return add_query_arg([
-            // TODO: Asperato docs not found!!
             'pmRef' => $this->gateway->get_option('pmRef', '903'),
-            // TODO: Asperato docs not found!!
-            'camid' => $this->gateway->get_option('camid', '7010Y000000DTD1'),
             'DLamount' => (float) $order->get_total(),
             'DLcurrency' => get_woocommerce_currency(),
             'DLemail' => $order->get_billing_email(),

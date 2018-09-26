@@ -12,6 +12,7 @@
 
 - [Minimum Requirements](#minimum-requirements)
 - [Installation](#installation)
+- [Not Supported / Not Implemented](#not-supported--not-implemented)
 - [Test Credentials](#test-credentials)
 - [FAQ](#faq)
   - [Will you add support for older PHP versions?](#will-you-add-support-for-older-php-versions)
@@ -54,6 +55,10 @@ $ composer require itinerisltd/wc-asperato
 
 **For Itineris team only:** [Asperato](https://asperato.com/) is not up to Itineris standards. 
 Using this plugin requires **prior approval** from the PHP team.
+
+## Not Supported / Not Implemented
+
+- camid
 
 ## Test Credentials
 
