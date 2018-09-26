@@ -12,7 +12,12 @@
 
 - [Minimum Requirements](#minimum-requirements)
 - [Installation](#installation)
+- [To Webkul](#to-webkul)
+  - [Task 1 - pid](#task-1---pid)
+  - [Task 2 - payment status](#task-2---payment-status)
+- [To Itineris Team](#to-itineris-team)
 - [Not Supported / Not Implemented](#not-supported--not-implemented)
+- [Incompatibility](#incompatibility)
 - [Test Credentials](#test-credentials)
 - [FAQ](#faq)
   - [Will you add support for older PHP versions?](#will-you-add-support-for-older-php-versions)
@@ -53,16 +58,63 @@
 $ composer require itinerisltd/wc-asperato
 ```
 
-**For Itineris team only:** [Asperato](https://asperato.com/) is not up to Itineris standards. 
+## To Webkul
+
+### Task 1 - pid
+
+> 'pid' is the Salesforce ID of the related payment object row.  
+> It will have to be obtained from Salesforce.
+> The basic principal is to go through the journey where the customer decides on what they wish to purchase.
+> Once they get to the point of fulfilment (i.e. payment) a record would be inserted into the payment object in Salesforce and then the customer can be transferred to the Ecommerce URL that is generated.  Before the Asperato paypage is then displayed we'll grab data from Salesforce using the parameters and that will pre-populate the Asperato pay page with amount, currency, etc.
+>
+> -- Asperato Support
+
+You need to hook into [`wc_asperato_pid`](./src/GatewayOperations/Receipt.php) and return a string:
+```php
+add_filter('wc_asperato_pid', function(\WC_Order $order): string {
+    $pid = xxxxxx // Retrieve payment reference from Salesforce.
+    return $pid;
+});
+```
+
+### Task 2 - payment status
+
+After users filling out Asperato iFrame form successfully, this plugin set the order status to `on-hold`.
+
+You need to:
+- hook into correct WooCommerce action
+- check payment status on Salesforce
+- update WooCommerce order status
+
+## To Itineris Team
+
+[Asperato](https://asperato.com/) is not up to Itineris standards. 
 Using this plugin requires **prior approval** from the PHP team.
+
+Before we retrieve payment reference from Salesforce:
+```php
+add_filter('wc_asperato_pid', function() {
+    return '';
+});
+```
 
 ## Not Supported / Not Implemented
 
 - camid
+- recurring payment
+- refund
+- void
+
+## Incompatibility
+
+- [Privacy Badger](https://www.eff.org/privacybadger)
 
 ## Test Credentials
 
 pmRef: 903
+Credit card number: 4242 4242 4242 4242
+CVV: 123
+Expiry Date: Any date in the next year
 
 ## FAQ
 

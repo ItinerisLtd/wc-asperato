@@ -83,7 +83,7 @@ class WCAsperatoGateway extends WC_Payment_Gateway
                 'type' => 'text',
                 'desc_tip' => true,
                 'description' => __(
-                    'pmRef is a customer reference that can be derived from Salesforce. If you are using the ecommerce URL field from the payment object then this will already be included in the URL content.', // phpcs:ignore
+                    'pmRef is a customer reference that can be derived from Salesforce.',
                     'woocommerce'
                 ),
                 'default' => '903',

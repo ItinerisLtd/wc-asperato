@@ -7,6 +7,9 @@ use WC_Order;
 
 class CallbackHandler
 {
+    /**
+     * Set order status to `on-hold`. Then, redirect to view order URL.
+     */
     public function markAsOnHold(): void
     {
         $order = $this->getOrder();
@@ -26,6 +29,11 @@ class CallbackHandler
         exit;
     }
 
+    /**
+     * Get WC_Order instance from superglobals.
+     *
+     * @return null|WC_Order
+     */
     protected function getOrder(): ?WC_Order
     {
         $order = null;
