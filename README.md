@@ -75,7 +75,7 @@ $ composer require itinerisltd/wc-asperato:dev-master
 
 You need to hook into [`wc_asperato_pid`](./src/GatewayOperations/Receipt.php) and return a string:
 ```php
-add_filter('wc_asperato_pid', function(\WC_Order $order): string {
+add_filter('wc_asperato_pid', function(?string $pid, \WC_Order $order): string {
     $pid = xxxxxx // Retrieve payment reference from Salesforce.
     return $pid;
 });
