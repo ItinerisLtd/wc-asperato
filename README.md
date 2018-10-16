@@ -15,7 +15,7 @@
 - [Minimum Requirements](#minimum-requirements)
 - [Installation](#installation)
 - [To Webkul](#to-webkul)
-  - [Task 1 - pid](#task-1---pid)
+  - [Task 1 - iFrame URL](#task-1---iframe-url)
   - [Task 2 - payment status](#task-2---payment-status)
 - [To Itineris Team](#to-itineris-team)
 - [Not Supported / Not Implemented](#not-supported--not-implemented)
@@ -64,21 +64,14 @@ $ composer require itinerisltd/wc-asperato:dev-master
 
 ## To Webkul
 
-### Task 1 - pid
+### Task 1 - iFrame URL
 
-> 'pid' is the Salesforce ID of the related payment object row.  
-> It will have to be obtained from Salesforce.
-> The basic principal is to go through the journey where the customer decides on what they wish to purchase.
-> Once they get to the point of fulfilment (i.e. payment) a record would be inserted into the payment object in Salesforce and then the customer can be transferred to the Ecommerce URL that is generated.  Before the Asperato paypage is then displayed we'll grab data from Salesforce using the parameters and that will pre-populate the Asperato pay page with amount, currency, etc.
->
-> -- Asperato Support
-
-You need to hook into [`wc_asperato_pid`](./src/GatewayOperations/Receipt.php) and return a string:
+You need to hook into [`wc_asperato_iframe_src`](./src/GatewayOperations/Receipt.php) and return a string:
 ```php
-add_filter('wc_asperato_pid', function(?string $pid, \WC_Order $order): string {
-    $pid = xxxxxx // Retrieve payment reference from Salesforce.
-    return $pid;
-});
+add_filter('wc_asperato_iframe_src', function(?string $iframeSrc, \WC_Order $order): string {
+    $iframeSrc = xxxxxx // Retrieve the Asperato iFrame URL from Salesforce.
+    return $iframeSrc;
+}, 10, 2);
 ```
 
 ### Task 2 - payment status
@@ -97,9 +90,14 @@ Using this plugin requires **prior approval** from the PHP team.
 
 Before task 1 is completed:
 ```php
-add_filter('wc_asperato_pid', function() {
-    return '';
-});
+add_filter('wc_asperato_iframe_src', function(?string $iframeSrc, \WC_Order $order): string {
+    return add_query_arg([
+        'pmRef' => '903', // Sandbox account.
+        'DLamount' => (float) $order->get_total(),
+        'DLcurrency' => get_woocommerce_currency(),
+        'DLemail' => $order->get_billing_email(),
+    ], 'https://test.protectedpayments.net/PMWeb1');
+}, 10, 2);
 ```
 
 ## Not Supported / Not Implemented

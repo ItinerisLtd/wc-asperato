@@ -9,7 +9,7 @@ use WC_Payment_Gateway;
 
 class Receipt
 {
-    public const PID_FILTER = 'wc_asperato_pid';
+    public const IFRAME_SRC_FILTER = 'wc_asperato_iframe_src';
 
     /**
      * The gateway instance.
@@ -39,11 +39,11 @@ class Receipt
     {
         $order = wc_get_order($orderId);
 
-        $pid = apply_filters(static::PID_FILTER, null, $order);
-        if (! is_string($pid)) {
+        $iframeSrc = apply_filters(static::IFRAME_SRC_FILTER, null, $order);
+        if (! is_string($iframeSrc) || empty($iframeSrc)) {
             // Translators: %1$s is the filter tag.
-            $message = esc_html__('WC Asperato: Unable to retrieve "pid". Did you hook into "%1$s"?', 'wc-asperato');
-            $message = sprintf($message, static::PID_FILTER);
+            $message = esc_html__('WC Asperato: Unable to retrieve iFrame src. Did you hook into "%1$s"?', 'wc-asperato');
+            $message = sprintf($message, static::IFRAME_SRC_FILTER);
             echo esc_html($message);
             return;
         }
@@ -61,10 +61,10 @@ class Receipt
         ]);
         wp_enqueue_script('wc-asperato-iframe');
 
-        // TODO: Apply filters.
-        echo '<iframe id="asperato" src="';
-        echo esc_url($this->iframeUrl($order, $pid));
-        echo '" height="1000" width="500"></iframe>';
+        printf(
+            '<iframe id="asperato" src="%1$s" height="1000" width="500"></iframe>',
+            esc_url($iframeSrc)
+        );
     }
 
     /**
@@ -97,25 +97,5 @@ class Receipt
 
         // TODO: Figure out why WooCommerce docs not using HTTPS.
         return str_replace('https:', 'http:', $redirectUrl);
-    }
-
-    /**
-     * The iFrame src for a given order.
-     *
-     * @param WC_Order $order The order instance.
-     * @param string   $pid   The Salesforce ID of the related payment object row.
-     *
-     * @return string
-     */
-    protected function iframeUrl(WC_Order $order, string $pid): string
-    {
-        // TODO: Apply filters.
-        return add_query_arg([
-            'pmRef' => $this->gateway->get_option('pmRef', '903'),
-            'pid' => $pid,
-            'DLamount' => (float) $order->get_total(),
-            'DLcurrency' => get_woocommerce_currency(),
-            'DLemail' => $order->get_billing_email(),
-        ], $this->endpoint() . '/PMWeb1');
     }
 }
