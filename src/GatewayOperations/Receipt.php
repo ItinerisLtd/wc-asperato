@@ -42,7 +42,7 @@ class Receipt
         $iframeSrc = apply_filters(static::IFRAME_SRC_FILTER, null, $order);
         if (! is_string($iframeSrc) || empty($iframeSrc)) {
             // Translators: %1$s is the filter tag.
-            $message = esc_html__('WC Asperato: Unable to retrieve iFrame src. Did you hook into "%1$s"?', 'wc-asperato');
+            $message = esc_html__('WC Asperato: Unable to retrieve iFrame src. Did you hook into "%1$s"?', 'wc-asperato'); // phpcs:ignore Generic.Files.LineLength.TooLong
             $message = sprintf($message, static::IFRAME_SRC_FILTER);
             echo esc_html($message);
             return;
